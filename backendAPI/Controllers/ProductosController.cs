@@ -16,14 +16,33 @@ namespace backendAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Productos
+        // GET: api/Productos?estado=activos|descontinuados|todos
+        // Sin parámetro o estado=activos: solo productos activos
+        // estado=descontinuados: solo productos descontinuados
+        // estado=todos: todos los productos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
+        public async Task<ActionResult<IEnumerable<Producto>>> GetProductos([FromQuery] string? estado = "activos")
         {
-            return await _context.Productos.ToListAsync();
+            IQueryable<Producto> query = _context.Productos;
+
+            switch (estado?.ToLower())
+            {
+                case "descontinuados":
+                    query = query.Where(p => p.Descontinuado);
+                    break;
+                case "todos":
+                    break;
+                case "activos":
+                default:
+                    query = query.Where(p => !p.Descontinuado);
+                    break;
+            }
+
+            return await query.ToListAsync();
         }
 
         // GET: api/Productos/5
+        // Devuelve el producto sin importar si está descontinuado
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {

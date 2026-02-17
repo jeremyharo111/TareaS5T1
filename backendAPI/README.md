@@ -8,17 +8,31 @@ DB_CONNECTION_STRING="Server=TU_SERVIDOR;Database=BDCRUD;Trusted_Connection=True
 
 ## Endpoints
 
-### 1. Obtener todos los productos
+### GET - Obtener productos
 
-`GET` `http://localhost:5000/api/Productos`
+`GET` `https://localhost:7264/api/Productos`
 
-### 2. Obtener un producto por ID
+`GET` `https://localhost:7264/api/Productos?estado=activos`
 
-`GET` `http://localhost:5000/api/Productos/{id}`
+`GET` `https://localhost:7264/api/Productos?estado=todos`
 
-### 3. Crear un nuevo producto
+`GET` `https://localhost:7264/api/Productos?estado=descontinuados`
 
-`POST` `http://localhost:5000/api/Productos`
+**Query Params:**
+
+- `estado`: `activos` | `descontinuados` | `todos` (default: `activos`)
+
+---
+
+### GET - Obtener producto por ID
+
+`GET` `https://localhost:7264/api/Productos/{id}`
+
+---
+
+### POST - Crear producto
+
+`POST` `https://localhost:7264/api/Productos`
 
 ```json
 {
@@ -31,9 +45,11 @@ DB_CONNECTION_STRING="Server=TU_SERVIDOR;Database=BDCRUD;Trusted_Connection=True
 }
 ```
 
-### 4. Actualizar un producto existente
+---
 
-`PUT` `http://localhost:5000/api/Productos/{id}`
+### PUT - Actualizar producto
+
+`PUT` `https://localhost:7264/api/Productos/{id}`
 
 ```json
 {
@@ -48,6 +64,8 @@ DB_CONNECTION_STRING="Server=TU_SERVIDOR;Database=BDCRUD;Trusted_Connection=True
 }
 ```
 
-### 5. Descontinuar un producto
+---
 
-`DELETE` `http://localhost:5000/api/Productos/{id}`
+### DELETE - Descontinuar producto
+
+`DELETE` `https://localhost:7264/api/Productos/{id}`

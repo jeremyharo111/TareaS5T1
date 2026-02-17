@@ -8,17 +8,27 @@
 
 ## Endpoints
 
-### 1. Obtener todos los productos
+### GET - Obtener productos
 
-`GET` `http://localhost:5000/api/Productos`
+`GET` `https://localhost:7264/api/Productos`
 
-### 2. Obtener un producto por ID
+`GET` `https://localhost:7264/api/Productos?estado=activos`
 
-`GET` `http://localhost:5000/api/Productos/{id}`
+`GET` `https://localhost:7264/api/Productos?estado=todos`
 
-### 3. Crear un nuevo producto
+`GET` `https://localhost:7264/api/Productos?estado=descontinuados`
 
-`POST` `http://localhost:5000/api/Productos`
+**Query Params:**
+
+- `estado`: `activos` | `descontinuados` | `todos` (default: `activos`)
+
+### GET - Obtener producto por ID
+
+`GET` `https://localhost:7264/api/Productos/{id}`
+
+### POST - Crear producto
+
+`POST` `https://localhost:7264/api/Productos`
 
 ```json
 {
@@ -31,9 +41,9 @@
 }
 ```
 
-### 4. Actualizar un producto existente
+### PUT - Actualizar producto
 
-`PUT` `http://localhost:5000/api/Productos/{id}`
+`PUT` `https://localhost:7264/api/Productos/{id}`
 
 ```json
 {
@@ -48,6 +58,6 @@
 }
 ```
 
-### 5. Descontinuar un producto
+### DELETE - Descontinuar producto
 
-`DELETE` `http://localhost:5000/api/Productos/{id}`
+`DELETE` `https://localhost:7264/api/Productos/{id}`
